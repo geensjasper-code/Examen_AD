@@ -45,3 +45,22 @@ class PriorityQueue:
 
     def size(self):
         return self.length
+
+    def sort_by_priority(self):
+        # Step 1: Extract all nodes into a list
+        nodes = []
+        current = self.head
+        while current:
+            nodes.append((current.element, current.priority))
+            current = current.next
+
+        # Step 2: Sort by priority (ascending = highest priority first)
+        nodes.sort(key=lambda x: x[1])
+
+        # Step 3: Rebuild the priority queue
+        self.head = None
+        self.length = 0
+
+        for element, priority in nodes:
+            self.enqueue(element, priority)
+
